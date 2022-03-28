@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FieldWidth: 3
   FieldHeight: 3
-  MaxRedChanceRate: 1
+  MaxRedChanceRate: 0.5
   DifficultyStepMoves: 10

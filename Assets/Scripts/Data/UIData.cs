@@ -1,5 +1,4 @@
 using UnityEngine;
-
 namespace CardStacker.Data
 {
     [CreateAssetMenu(fileName = "UIData", menuName = "CardStacker/UIData")]
