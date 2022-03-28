@@ -1,0 +1,21 @@
+{
+    "name": "Core",
+    "rootNamespace": "CardStacker",
+    "references": [
+        "Unity.InputSystem",
+        "General",
+        "Data",
+        "LogicController",
+        "UI",
+        "Zenject"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

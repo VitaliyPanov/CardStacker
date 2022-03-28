@@ -1,0 +1,19 @@
+{
+    "name": "UI",
+    "rootNamespace": "CardStacker",
+    "references": [
+        "UnityEngine.UIElementsModule",
+        "UnityEngine.UIElementsInputSystemModule",
+        "General",
+        "Data"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

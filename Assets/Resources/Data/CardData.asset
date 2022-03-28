@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 174739e722076e74f8e8d18511a7ae43, type: 3}
+  m_Name: CardData
+  m_EditorClassIdentifier: 
+  CardPrefab: {fileID: 7018390267435559051, guid: 68fc572a047ac1d46ac76c20881fa645, type: 3}
+  HeroOverlay: {fileID: 21300000, guid: e9b3d582d1dfc184786e65e396b0a521, type: 3}
+  GreenOverlay: {fileID: 21300000, guid: 08d7f6303c05277478fee0fa3a3cd19c, type: 3}
+  RedOverlay: {fileID: 21300000, guid: a4c3781c74d6519489d3589f8ff2688e, type: 3}
