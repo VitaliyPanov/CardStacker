@@ -50,8 +50,8 @@ namespace CardStacker.UI
 
         private void SetUpSettings(int rows, int columns)
         {
-            _staticData.FieldHeight = rows;
-            _staticData.FieldWidth = columns;
+            _staticData.FieldRows = rows;
+            _staticData.FieldColumns = columns;
             SaveDataRepository<StaticData> dataRepository =
                 new SaveDataRepository<StaticData>(SavingType.Json, SavePaths.StaticData);
             dataRepository.Save(_staticData, true);

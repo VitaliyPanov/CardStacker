@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec47febf5f454d7a901c14aa7fdadd52, type: 3}
   m_Name: SceneStaticData
   m_EditorClassIdentifier: 
-  FieldWidth: 3
-  FieldHeight: 3
+  FieldColumns: 3
+  FieldRows: 3
   MaxRedChanceRate: 0.5
-  DifficultyStepMoves: 10

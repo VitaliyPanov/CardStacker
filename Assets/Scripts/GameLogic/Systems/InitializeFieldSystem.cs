@@ -17,7 +17,7 @@ namespace CardStacker.GameLogic.Systems
             var cellPool = world.GetPool<CellComponent>();
             var emptyPool = world.GetPool<EmptyCellComponent>();
             var positionIdPool = world.GetPool<PositionIdComponent>();
-            int[,] field = new int[_staticData.FieldWidth, _staticData.FieldHeight];
+            int[,] field = new int[_staticData.FieldColumns, _staticData.FieldRows];
             for (int i = 0; i < field.GetLength(0); i++)
             {
                 for (int j = 0; j < field.GetLength(1); j++)

@@ -34,7 +34,7 @@ namespace CardStacker.GameLogic
                 {
                     case MoveDirection.Right:
                     {
-                        if (heroCellPosition.x == _staticData.FieldWidth - 1) return;
+                        if (heroCellPosition.x == _staticData.FieldColumns - 1) return;
                         ChangeHeroCell(new Vector2Int(heroCellPosition.x + 1, heroCellPosition.y), heroCellId);
                         break;
                     }
@@ -46,7 +46,7 @@ namespace CardStacker.GameLogic
                     }
                     case MoveDirection.Up:
                     {
-                        if (heroCellPosition.y == _staticData.FieldHeight - 1) return;
+                        if (heroCellPosition.y == _staticData.FieldRows - 1) return;
                         ChangeHeroCell(new Vector2Int(heroCellPosition.x, heroCellPosition.y + 1), heroCellId);
                         break;
                     }

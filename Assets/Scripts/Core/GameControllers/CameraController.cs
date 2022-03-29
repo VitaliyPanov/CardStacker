@@ -17,11 +17,11 @@ namespace CardStacker.Core.GameControllers
             var runtimeData = _dataService.RuntimeData;
             var staticData = _dataService.StaticData;
 
-            float levelWight = (staticData.FieldWidth - 1) * runtimeData.HorizontalOffset;
-            float levelHeight = (staticData.FieldHeight - 1) * runtimeData.VerticalOffset;
+            float levelWight = (staticData.FieldColumns - 1) * runtimeData.HorizontalOffset;
+            float levelHeight = (staticData.FieldRows - 1) * runtimeData.VerticalOffset;
             _camera.transform.position = new Vector3(levelWight * 0.5f, levelHeight * 0.5f, 0);
             _camera.orthographic = true;
-            _camera.orthographicSize = (staticData.FieldWidth > staticData.FieldHeight)
+            _camera.orthographicSize = (staticData.FieldColumns > staticData.FieldRows)
                 ? (levelWight + runtimeData.CardWight) * 0.75f / _camera.aspect
                 : (levelHeight + runtimeData.CardHeight) * 0.5f + 1f;
             _camera.nearClipPlane = -1;
