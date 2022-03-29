@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 
@@ -14,19 +13,11 @@ namespace CardStacker.GameLogic.Views
         public Transform Transform => transform;
         public GameObject GameObject => gameObject;
 
-        private void Awake()
-        {
-            _canvas = transform.GetComponentInChildren<Canvas>();
-        }
+        private ValueSlider _valueSlider;
+
+        private void Awake() => _canvas = transform.GetComponentInChildren<Canvas>();
 
         public void InitializeView() => _pointsValue = 0;
-
-        public void SetPoints(int value)
-        {
-            int currentPoints = _pointsValue;
-            _pointsValue = value;
-            AddPointsAsync(currentPoints, (value - currentPoints) > 0);
-        }
 
         public void SetOverlay(Sprite sprite, int layerOrder)
         {
@@ -36,24 +27,25 @@ namespace CardStacker.GameLogic.Views
             _canvas.sortingOrder = layerOrder + 2;
         }
 
-        private async void AddPointsAsync(int currentPoints, bool isAdd)
+        public void SetPoints(int newValue)
         {
-            if (isAdd)
+            int previousValue = _pointsValue;
+            _pointsValue = newValue;
+            AddPoints(previousValue, _pointsValue);
+        }
+
+        private void AddPoints(int from, int to)
+        {
+            if (from == to) return;
+            if (_valueSlider != null)
             {
-                while (_pointsValue >= currentPoints)
-                {
-                    _pointsField.text = $"{currentPoints++}";
-                    await Task.Delay(100);
-                }
+                _valueSlider.Stop();
+                _valueSlider = null;
+                _pointsField.text = $"{from}";
             }
-            else
-            {
-                while (_pointsValue <= currentPoints)
-                {
-                    _pointsField.text = $"{currentPoints--}";
-                    await Task.Delay(100);
-                }
-            }
+
+            _valueSlider = new ValueSlider(_pointsField);
+            _valueSlider.Start(from, to);
         }
     }
 }

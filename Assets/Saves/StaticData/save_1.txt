@@ -1,0 +1,1 @@
+{"FieldColumns":3,"FieldRows":3,"MaxRedChanceRate":0.5}

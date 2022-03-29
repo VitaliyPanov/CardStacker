@@ -56,7 +56,6 @@ namespace CardStacker.UI
                 new SaveDataRepository<StaticData>(SavingType.Json, SavePaths.StaticData);
             dataRepository.Save(_staticData, true);
         }
-
         private void QuitGame() => Application.Quit();
 
         private void StartGame()

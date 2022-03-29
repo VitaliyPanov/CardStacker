@@ -8,6 +8,7 @@
         "Leopotam.EcsLite.Di",
         "Leopotam.EcsLite.UnityEditor",
         "Leopotam.EcsLite.UnityEditor.Runtime",
+        "UniTask",
         "General",
         "Data"
     ],
