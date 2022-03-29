@@ -50,8 +50,8 @@ namespace CardStacker.UI
 
         private void SetUpSettings(int rows, int columns)
         {
-            _staticData.FieldWidth = rows;
-            _staticData.FieldHeight = columns;
+            _staticData.FieldHeight = rows;
+            _staticData.FieldWidth = columns;
             SaveDataRepository<StaticData> dataRepository =
                 new SaveDataRepository<StaticData>(SavingType.Json, SavePaths.StaticData);
             dataRepository.Save(_staticData, true);
@@ -64,6 +64,9 @@ namespace CardStacker.UI
             SetUpSettings(_rowsSlider.value, _columnsSlider.value);
             Instantiate(_bootstrapperPrefab);
         }
+        
+        private void OnRowsSliderChangeEvent(ChangeEvent<int> evt) => _rowsLabel.text = $"{evt.newValue}";
+        private void OnColumnsSliderChangeEvent(ChangeEvent<int> evt) => _columnsLabel.text = $"{evt.newValue}";
 
         private void OnEnable()
         {
@@ -72,11 +75,7 @@ namespace CardStacker.UI
             _rowsSlider.RegisterCallback<ChangeEvent<int>>(OnRowsSliderChangeEvent);
             _columnsSlider.RegisterCallback<ChangeEvent<int>>(OnColumnsSliderChangeEvent);
         }
-
-        private void OnRowsSliderChangeEvent(ChangeEvent<int> evt) => _rowsLabel.text = $"{evt.newValue}";
-        private void OnColumnsSliderChangeEvent(ChangeEvent<int> evt) => _columnsLabel.text = $"{evt.newValue}";
-
-
+        
         private void OnDisable()
         {
             _startButton.clicked -= StartGame;
