@@ -36,10 +36,15 @@ namespace CardStacker.Core.GameControllers
         
         public void QuitGame() => Application.Quit();
 
-        public void GameOver() => _uiController.GameOver(_dataService.SaveScore());
+        public void GameOver()
+        {
+            _uiController.GameOver(_dataService.SaveScore());
+            _coreController.DestroyLogic();
+        }
+
         public void RestartGame()
         {
-            _coreController.Remove();
+            _coreController.DestroyCore();
             Destroy(gameObject);
         }
     }

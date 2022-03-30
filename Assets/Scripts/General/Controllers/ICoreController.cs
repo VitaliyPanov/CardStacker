@@ -2,6 +2,7 @@
 {
     public interface ICoreController
     {
-        void Remove();
+        void DestroyCore();
+        void DestroyLogic();
     }
 }

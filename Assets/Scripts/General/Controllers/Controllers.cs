@@ -1,9 +1,11 @@
+using System;
 using System.Collections.Generic;
 
 namespace CardStacker.General.Controllers
 {
     public sealed class Controllers
     {
+        private readonly Dictionary<string, IController> _controllersMap;
         private readonly List<IStart> _startControllers;
         private readonly List<IUpdate> _updateControllers;
         private readonly List<IFixedUpdate> _fixedControllers;
@@ -12,6 +14,7 @@ namespace CardStacker.General.Controllers
 
         public Controllers()
         {
+            _controllersMap = new Dictionary<string, IController>(4);
             _startControllers = new List<IStart>(4);
             _updateControllers = new List<IUpdate>(4);
             _fixedControllers = new List<IFixedUpdate>(4);
@@ -19,8 +22,9 @@ namespace CardStacker.General.Controllers
             _destroyControllers = new List<IDestroy>(4);
         }
 
-        public Controllers Add(IController controller)
+        public Controllers Add(IController controller, string name)
         {
+            _controllersMap[name] = controller;
             if (controller is IStart initialize)
             {
                 _startControllers.Add(initialize);
@@ -40,15 +44,47 @@ namespace CardStacker.General.Controllers
             {
                 _lateControllers.Add(lateUpdate);
             }
-            
-            if (controller is IDestroy cleanup)
+
+            if (controller is IDestroy destroy)
             {
-                _destroyControllers.Add(cleanup);
+                _destroyControllers.Add(destroy);
             }
 
             return this;
         }
-        
+        public IController Remove(string name)
+        {
+            if (_controllersMap.TryGetValue(name, out IController controller))
+            {
+                if (controller is IStart initialize)
+                {
+                    _startControllers.Remove(initialize);
+                }
+
+                if (controller is IUpdate update)
+                {
+                    _updateControllers.Remove(update);
+                }
+
+                if (controller is IFixedUpdate fixedUpdate)
+                {
+                    _fixedControllers.Remove(fixedUpdate);
+                }
+
+                if (controller is ILateUpdate lateUpdate)
+                {
+                    _lateControllers.Remove(lateUpdate);
+                }
+
+                if (controller is IDestroy destroy)
+                {
+                    _destroyControllers.Remove(destroy);
+                }
+                return controller;
+            }
+            return default;
+        }
+
         public void Start()
         {
             for (var index = 0; index < _startControllers.Count; ++index)
@@ -56,7 +92,7 @@ namespace CardStacker.General.Controllers
                 _startControllers[index].Start();
             }
         }
-        
+
         public void Update()
         {
             for (var index = 0; index < _updateControllers.Count; ++index)
@@ -70,9 +106,9 @@ namespace CardStacker.General.Controllers
             for (var index = 0; index < _fixedControllers.Count; ++index)
             {
                 _fixedControllers[index].FixedUpdate();
-            } 
+            }
         }
-        
+
         public void LateUpdate()
         {
             for (var index = 0; index < _lateControllers.Count; ++index)

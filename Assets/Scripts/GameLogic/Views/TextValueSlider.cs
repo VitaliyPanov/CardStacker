@@ -3,15 +3,15 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using TMPro;
 
-internal sealed class ValueSlider : IDisposable
+internal sealed class TextValueSlider : IDisposable
 {
     private const int c_pointsSlideSpeed = 10;
-    private readonly TextMeshProUGUI _slider;
+    private readonly TextMeshProUGUI _text;
     private readonly CancellationTokenSource _cts;
 
-    public ValueSlider(TextMeshProUGUI slider)
+    public TextValueSlider(TextMeshProUGUI text)
     {
-        _slider = slider;
+        _text = text;
         _cts = new CancellationTokenSource();
     }
 
@@ -26,7 +26,7 @@ internal sealed class ValueSlider : IDisposable
             while (from <= to)
             {
                 if (_cts.IsCancellationRequested) return;
-                _slider.text = $"{from++}";
+                _text.text = $"{from++}";
                 await UniTask.DelayFrame(c_pointsSlideSpeed);
             }
         }
@@ -35,7 +35,7 @@ internal sealed class ValueSlider : IDisposable
             while (from >= to)
             {
                 if (_cts.IsCancellationRequested) return;
-                _slider.text = $"{from--}";
+                _text.text = $"{from--}";
                 await UniTask.DelayFrame(c_pointsSlideSpeed);
             }
         }

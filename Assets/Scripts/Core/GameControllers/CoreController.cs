@@ -7,6 +7,8 @@ namespace CardStacker.Core.GameControllers
 {
     internal sealed class CoreController : MonoBehaviour, ICoreController
     {
+        private const string _logicName = "logic";
+        private const string _cameraName = "camera";
         public event Action OnControllerDestroyEvent;
         private ILogicController _logicController;
         private ICameraController _cameraController;
@@ -39,14 +41,23 @@ namespace CardStacker.Core.GameControllers
         {
             _controllers = new Controllers();
             _controllers
-                .Add(_cameraController)
-                .Add(_logicController);
+                .Add(_cameraController, _cameraName)
+                .Add(_logicController, _logicName);
         }
 
-        public void Remove()
+        public void DestroyCore()
         {
             OnControllerDestroyEvent?.Invoke();
             Destroy(gameObject);
+        }
+
+        public void DestroyLogic()
+        {
+            IController logicController = _controllers.Remove(_logicName);
+            if (logicController is IDestroy destroy)
+            {
+                destroy.Destroy();
+            }
         }
 
         private void Start() => _controllers.Start();

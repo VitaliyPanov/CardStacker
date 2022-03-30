@@ -13,7 +13,7 @@ namespace CardStacker.GameLogic.Views
         public Transform Transform => transform;
         public GameObject GameObject => gameObject;
 
-        private ValueSlider _valueSlider;
+        private TextValueSlider _textValueSlider;
 
         private void Awake() => _canvas = transform.GetComponentInChildren<Canvas>();
 
@@ -29,6 +29,7 @@ namespace CardStacker.GameLogic.Views
 
         public void SetPoints(int newValue)
         {
+            if (newValue == _pointsValue) return;
             int previousValue = _pointsValue;
             _pointsValue = newValue;
             AddPoints(previousValue, _pointsValue);
@@ -36,16 +37,17 @@ namespace CardStacker.GameLogic.Views
 
         private void AddPoints(int from, int to)
         {
-            if (from == to) return;
-            if (_valueSlider != null)
-            {
-                _valueSlider.Stop();
-                _valueSlider = null;
-                _pointsField.text = $"{from}";
-            }
+            _textValueSlider?.Stop();
+            _textValueSlider = null;
+            _pointsField.text = $"{from}";
 
-            _valueSlider = new ValueSlider(_pointsField);
-            _valueSlider.Start(from, to);
+            _textValueSlider = new TextValueSlider(_pointsField);
+            _textValueSlider.Start(from, to);
+        }
+        private void OnDestroy()
+        {
+            _textValueSlider?.Stop();
+            _textValueSlider = null;
         }
     }
 }
